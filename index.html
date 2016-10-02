@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>bigtextbox.com</title>
+    <title>fancytextbox.com</title>
     <style>
       html {
         width: 100%;
@@ -44,24 +44,12 @@
       footer:hover a {
         color: #88f;
       }
-      #bigtextbox {
-        border: none;
-        position: absolute;
-        top: 40px;
-        bottom: 40px;
-        margin: 0;
-        padding: 10%;
-        width: 80%;
-        text-align: center;
-        font-family: Helvetica;
-        font-size: 92px;
-        outline: none;
-      }
+
     </style>
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-278947-10']);
+      _gaq.push(['_setAccount', 'UA-85108428-1']);
       _gaq.push(['_trackPageview']);
 
       (function() {
@@ -71,17 +59,66 @@
       })();
 
     </script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+    <script src="http://cdn.quilljs.com/1.0.6/quill.min.js" type="text/javascript"></script>
+
+    <link href="http://cdn.quilljs.com/1.0.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
+
+    <style>
+      .ql-toolbar {
+		margin: 0 auto;
+        width: 60%;
+	  }
+
+      .ql-toolbar.ql-snow {
+       border: none;
+      }
+    </style>
   </head>
   <body>
     <header>
-      <h1>bigtextbox.com</h1>
+      <h1>fancytextbox.com</h1>
     </header>
-    <textarea id="bigtextbox"></textarea>
+    <!-- Create the editor container -->
+    <div id="editor">
+    </div>
     <footer>
-      &copy; 2011 Grant Hutchins | <a href="http://nertzy.com">nertzy.com</a>
+      &copy; 2016 Jonathan Manuzak | <a href="http://manuzak.com">manuzak.com</a> | Forked in gratitude from <a href="http://smalltextbox.com">smalltextbox.com</a> by Johnny Mukai <a href="http://johnnymukai.com">johnnymukai.com</a>
     </footer>
-    <script type="text/javascript">
-      document.getElementById("bigtextbox").focus();
-    </script>
+	<script type="text/javascript">
+	  hljs.configure({   // configure hljs
+		languages: ['javascript', 'ruby', 'python']
+	  });
+
+	  var toolbarOptions = [
+		['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+		['blockquote', 'code-block'],
+
+		[{ 'list': 'ordered'}, { 'list': 'bullet' }],
+		[{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+		[{ 'direction': 'rtl' }],                         // text direction
+
+		[{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+		[{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+		[{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+		[{ 'font': [] }],
+		[{ 'align': [] }],
+
+		['clean'],                                         // remove formatting button
+		['code-block']  								   // Include button in toolbar
+	  ];
+
+	  var quill = new Quill('#editor', {
+		modules: {
+          toolbar: toolbarOptions,
+		  syntax: true              // Include syntax module
+		},
+		theme: 'snow'
+	  });
+	  quill.focus();
+  </script>
   </body>
 </html>
